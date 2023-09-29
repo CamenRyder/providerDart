@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider_tutoi01/main.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_tutoi01/myButtonDoSomething.dart';
+import 'package:provider_tutoi01/provider_01/myButtonDoSomething.dart';
+
 
 class MyModel2 with ChangeNotifier {
   //                          <--- MyModel
