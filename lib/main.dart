@@ -5,8 +5,10 @@ import 'package:provider_tutoi01/provider_02/view/about.dart';
 import 'package:provider_tutoi01/provider_02/view/home.dart';
 import 'package:provider_tutoi01/provider_02/model/ui.dart';
 import 'package:provider_tutoi01/provider_02/view/settings.dart';
+import 'package:provider_tutoi01/provider_03/model/shoe.dart';
 import 'package:provider_tutoi01/provider_03/views/screen_Introduc.dart';
 import 'package:provider_tutoi01/provider_03/views/screen_list.dart';
+import 'package:provider_tutoi01/provider_03/views/screen_settings.dart';
 
 void main() {
   runApp(  MyApp());
@@ -56,15 +58,15 @@ void main() {
    Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => UI()),
+        ChangeNotifierProvider(create: (_) => Shoes()),
       ],
       child: MaterialApp(
         initialRoute: '/',
         routes: {
-          '/': (context) => const IntroScreen(),
+          '/': (context) =>  const IntroScreen(),
           // '/': (context) =>  ListShoesScreen(),
-          '/screen_list': (context) => const ListShoesScreen(),
-          // '/settings': (context) => Settings(),
+          '/list': (context) => const ListShoesScreen(),
+          '/settings': (context) => const Screen_Settings(),
         },
       ),
     );

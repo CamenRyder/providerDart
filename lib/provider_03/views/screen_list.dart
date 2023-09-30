@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider_tutoi01/provider_02/drawer_menu.dart';
+import 'package:provider_tutoi01/provider_03/views/drawerMenu.dart';
 import 'package:provider_tutoi01/provider_03/model/shoe.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ListShoesScreen extends StatefulWidget {
   const ListShoesScreen({super.key});
@@ -24,8 +26,8 @@ class _ListShoesScreen extends State<ListShoesScreen> {
     _pageController.dispose();
     super.dispose();
   }
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<Shoes> listShoes = <Shoes>[
     Shoes(
@@ -59,12 +61,12 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   Widget build(BuildContext context) {
     _pageController = PageController();
     return Scaffold(
-      key: _scaffoldKey ,
+      key: _scaffoldKey,
       // appBar: AppBar(
 
       //   title: const Text("Some Shoe"),
       // ),
-       extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: true,
       drawer: const DrawerMenu(),
       backgroundColor: Colors.white,
       body: Stack(
@@ -98,7 +100,7 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
                             style: TextStyle(
                                 fontSize: 33,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue[500]),
+                                color: listShoes[index].color),
                           ),
                         ),
                         Expanded(
@@ -107,10 +109,22 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
                             margin: const EdgeInsets.fromLTRB(30, 40, 30, 40),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(25),
-                                color: Colors.blue[500]
-                                ), 
+                                color: listShoes[index].color),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Provider.of<Shoes>(context, listen: false)
+                                    .changeYourShoes(listShoes[index]);
+                                Fluttertoast.showToast(
+                                    msg: "Got It",
+                                    backgroundColor: Provider.of<Shoes>(context,
+                                            listen: false)
+                                        .color,
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                              },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.transparent,
                                   padding:
@@ -177,19 +191,24 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
               ],
             ),
           ),
-            Positioned(child: Container(
-            margin: const EdgeInsets.fromLTRB(10, 60, 0, 0),
-            child:  
-                InkWell(
-                  child: const Icon(Icons.menu_rounded, size: 38 , color: Colors.blue,),
-                  onTap:() {
-                  _scaffoldKey.currentState?.openDrawer() ;  
+          Consumer<Shoes>(
+            builder: (context, value, child) {
+              return Positioned(
+                  child: Container(
+                margin: const EdgeInsets.fromLTRB(10, 60, 0, 0),
+                child: InkWell(
+                  child: Icon(
+                    Icons.menu_rounded,
+                    size: 38,
+                    color: value.color,
+                  ),
+                  onTap: () {
+                    _scaffoldKey.currentState?.openDrawer();
                   },
-                ) ,  
-               
-
-            )
-            ) , 
+                ),
+              ));
+            },
+          )
         ],
       ),
     );
