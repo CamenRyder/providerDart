@@ -13,7 +13,7 @@ class DrawerMenu extends StatelessWidget {
         children:<Widget> [
           const DrawerHeader(  // setup drawerHeader ! 
             decoration: BoxDecoration(
-              color: Colors.teal,
+              color:  Color.fromARGB(255, 186, 45, 35),
             ),
             child: Center(
               child: Text(
@@ -43,10 +43,10 @@ class DrawerMenu extends StatelessWidget {
             
           // }),
           ListTile(
-            title: const Text("about"),
+            title: const Text("List Shoes"),
             onTap: () {
               print("tap tap"); 
-              Navigator.pushNamed(context, '/about') ;  
+              Navigator.pushNamed(context, '/screen_list') ;  
             },
           ), 
           getLine(),

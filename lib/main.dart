@@ -5,9 +5,11 @@ import 'package:provider_tutoi01/provider_02/view/about.dart';
 import 'package:provider_tutoi01/provider_02/view/home.dart';
 import 'package:provider_tutoi01/provider_02/model/ui.dart';
 import 'package:provider_tutoi01/provider_02/view/settings.dart';
+import 'package:provider_tutoi01/provider_03/views/screen_Introduc.dart';
+import 'package:provider_tutoi01/provider_03/views/screen_list.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp(  MyApp());
 }
 
 
@@ -27,11 +29,31 @@ void main() {
 //   }
 // }  --> this is provier_01 entry ! <---
 
+//  class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MultiProvider(
+//       providers: [
+//         ChangeNotifierProvider(create: (_) => UI()),
+//       ],
+//       child: MaterialApp(
+//         initialRoute: '/',
+//         routes: {
+//           '/': (context) => Home(),
+//           '/about': (context) => About(),
+//           '/settings': (context) => Settings(),
+//         },
+//       ),
+//     );
+//   }
+// }      ---> this is provider_02 entry ! <----
+
+
  class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UI()),
@@ -39,11 +61,12 @@ void main() {
       child: MaterialApp(
         initialRoute: '/',
         routes: {
-          '/': (context) => Home(),
-          '/about': (context) => About(),
-          '/settings': (context) => Settings(),
+          '/': (context) => const IntroScreen(),
+          // '/': (context) =>  ListShoesScreen(),
+          '/screen_list': (context) => const ListShoesScreen(),
+          // '/settings': (context) => Settings(),
         },
       ),
     );
   }
-}
+ }
