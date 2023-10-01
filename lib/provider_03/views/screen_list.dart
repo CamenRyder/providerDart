@@ -106,7 +106,7 @@ class _ListShoesScreen extends State<ListShoesScreen> {
                         Expanded(
                           flex: 4,
                           child: Container(
-                            margin: const EdgeInsets.fromLTRB(30, 40, 30, 40),
+                            margin: const EdgeInsets.fromLTRB(50, 40, 50, 40),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(25),
                                 color: listShoes[index].color),
@@ -114,27 +114,26 @@ class _ListShoesScreen extends State<ListShoesScreen> {
                               onPressed: () {
                                 Provider.of<Shoes>(context, listen: false)
                                     .changeYourShoes(listShoes[index]);
-                                Fluttertoast.showToast(
-                                    msg: "Got It",
-                                    backgroundColor: Provider.of<Shoes>(context,
-                                            listen: false)
-                                        .color,
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+                               Fluttertoast.showToast(
+        msg: "Got It",
+        backgroundColor: Provider.of<Shoes>(context,listen: false).color,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
                               },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.transparent,
                                   padding:
-                                      const EdgeInsets.fromLTRB(0, 15, 23, 15),
+                                      const EdgeInsets.fromLTRB(0, 10, 0, 10),
                                   shape: const RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(25)),
                                   )),
                               child: const Padding(
-                                  padding: EdgeInsets.fromLTRB(25, 5, 0, 6),
+                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
